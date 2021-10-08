@@ -24,7 +24,7 @@ RUN cd home \
     && pwd \
     && ./install_ant-media-server.sh -i ant-media-server-enterprise-2.3.0-20210302_1432.zip -s false
 
-
+EXPOSE 5000-20000/udp
 # Options 
 # -g: Use global(Public) IP in network communication. Its value can be true or false. Default value is false.
 #
