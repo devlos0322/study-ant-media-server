@@ -9,7 +9,8 @@ ARG BranchName=master
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Seoul
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-COPY ./resource/ant-media-server-enterprise-2.3.0-20210302_1432.zip /home/ant-media-server-enterprise-2.3.0-20210302_1432.zip
+# COPY ./resource/ant-media-server-enterprise-2.3.0-20210302_1432.zip /home/ant-media-server-enterprise-2.3.0-20210302_1432.zip
+COPY ./resource/ant-media-server-enterprise-2.4.0.2-20210905_1241.zip /home/ant-media-server-enterprise-2.4.0.2-20210905_1241.zip
 
 #Running update and install makes the builder not to use cache which resolves some updates
 RUN apt-get update && apt-get install -y curl libcap2 wget net-tools 
@@ -20,9 +21,13 @@ RUN cd home \
     && wget https://raw.githubusercontent.com/ant-media/Scripts/${BranchName}/install_ant-media-server.sh \
     && chmod 755 install_ant-media-server.sh
 
+# RUN cd home \
+#     && pwd \
+#     && ./install_ant-media-server.sh -i ant-media-server-enterprise-2.3.0-20210302_1432.zip -s false
+    
 RUN cd home \
     && pwd \
-    && ./install_ant-media-server.sh -i ant-media-server-enterprise-2.3.0-20210302_1432.zip -s false
+    && ./install_ant-media-server.sh -i ant-media-server-enterprise-2.4.0.2-20210905_1241.zip -s false
 
 EXPOSE 5000-20000/udp
 # Options 
